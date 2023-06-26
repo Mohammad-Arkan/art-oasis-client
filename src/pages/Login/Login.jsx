@@ -1,17 +1,29 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import {FaEye, FaEyeSlash} from "react-icons/fa";
-import {useForm} from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
+import GoogleLogin from "../../components/GoogleLogin";
 
 const Login = () => {
+  const {signIn} = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const location = useLocation();
+  const from = location.state?.from.pathname || "/";
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+
+    signIn(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        alert("user logged successfully");
+        navigate(from, {replace: true});
+      })
+      .catch((err) => alert(err.message));
   };
 
   const handleTogglePassword = () => {
@@ -73,6 +85,7 @@ const Login = () => {
               </span>
             </label>
           </form>
+          <GoogleLogin />
         </div>
       </div>
     </div>

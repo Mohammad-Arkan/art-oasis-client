@@ -1,8 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {FaAlignLeft, FaArrowRight, FaHome} from "react-icons/fa";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
+  const {user, logout} = useAuth();
+  const handleLogOut = () => {
+    logout();
+  };
   const navItems = (
     <>
       <li>
@@ -57,9 +62,15 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
         </div>
         <div className="navbar-end">
-          <Link to={"/login"} className="btn btn-neutral">
-            Login
-          </Link>
+          {user ? (
+            <button onClick={handleLogOut} className="btn">
+              Logout
+            </button>
+          ) : (
+            <Link to={"/login"} className="btn btn-neutral">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>

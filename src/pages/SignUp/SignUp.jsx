@@ -2,9 +2,12 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import {FaEye, FaEyeSlash} from "react-icons/fa";
 import {useForm} from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
+import GoogleLogin from "../../components/GoogleLogin";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const {createUser, updateUserProfile} = useAuth();
   const {
     register,
     handleSubmit,
@@ -16,6 +19,12 @@ const SignUp = () => {
       alert("confrim password didn't match");
       return;
     }
+    createUser(data.email, data.password)
+      .then((result) => {
+        const loggedUser = result.user;
+        alert("account has created successfully");
+      })
+      .catch((err) => alert(err.message));
   };
 
   const handleTogglePassword = () => {
@@ -151,6 +160,7 @@ const SignUp = () => {
                 </span>
               </label>
             </form>
+            <GoogleLogin/>
           </div>
         </div>
       </div>
