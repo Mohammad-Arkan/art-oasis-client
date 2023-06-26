@@ -5,15 +5,13 @@ import {useForm} from "react-hook-form";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: {errors},
-  } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
   };
 
   const handleTogglePassword = () => {
@@ -25,7 +23,7 @@ const Login = () => {
     <div>
       <div className=" w-1/2 lg:w-1/3 mx-auto my-[10vh]">
         <div className="card shadow-2xl">
-          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+          <form onSubmit={handleLogin} className="card-body">
             <h1 className="text-xl font-bold text-center">Login!</h1>
             <div className="form-control">
               <label className="label">
