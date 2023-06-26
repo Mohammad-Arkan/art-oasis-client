@@ -1,17 +1,25 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {FaAlignLeft, FaArrowRight, FaHome} from "react-icons/fa";
 
 const Navbar = () => {
   const navItems = (
     <>
       <li>
-        <Link>Home</Link>
+        <Link>
+          <FaHome />
+          Home
+        </Link>
       </li>
       <li>
-        <Link>Classes</Link>
+        <Link>
+          <FaArrowRight /> Classes
+        </Link>
       </li>
       <li>
-        <Link>Dashboard</Link>
+        <Link>
+          <FaAlignLeft /> Dashboard
+        </Link>
       </li>
     </>
   );
@@ -49,7 +57,9 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <Link to={"/login"} className="btn btn-neutral">
+            Login
+          </Link>
         </div>
       </div>
     </div>
