@@ -3,6 +3,7 @@ import {Link, useLocation, useNavigate} from "react-router-dom";
 import {FaEye, FaEyeSlash} from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import GoogleLogin from "../../components/GoogleLogin";
+import {useForm} from "react-hook-form";
 
 const Login = () => {
   const {signIn} = useAuth();
@@ -10,14 +11,14 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from.pathname || "/";
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: {errors},
+  } = useForm();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
-
-    signIn(email, password)
+  const onSubmit = (data) => {
+    signIn(data.email, data.password)
       .then((result) => {
         const loggedUser = result.user;
         alert("user logged successfully");
@@ -35,7 +36,7 @@ const Login = () => {
     <div>
       <div className=" w-1/2 lg:w-1/3 mx-auto my-[10vh]">
         <div className="card shadow-2xl">
-          <form onSubmit={handleLogin} className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <h1 className="text-xl font-bold text-center">Login!</h1>
             <div className="form-control">
               <label className="label">
@@ -44,6 +45,7 @@ const Login = () => {
               <input
                 type="email"
                 name="email"
+                {...register("email", {require: true})}
                 placeholder="email"
                 className="input input-bordered"
               />
@@ -55,6 +57,7 @@ const Login = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
+                {...register("password", {require: true})}
                 placeholder="password"
                 className="input input-bordered"
               />
@@ -71,7 +74,7 @@ const Login = () => {
             </div>
             <div className="form-control mt-6">
               <input
-                className="btn btn-primary"
+                className="btn btn-neutral"
                 type="submit"
                 value={"Login"}
               />

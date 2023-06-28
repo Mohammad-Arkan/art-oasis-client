@@ -63,9 +63,20 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {user ? (
-            <button onClick={handleLogOut} className="btn">
-              Logout
-            </button>
+            <>
+              <span className="mr-3">
+                {user.photoURL && (
+                  <img
+                    src={user.photoURL}
+                    className="rounded-full"
+                    width={40}
+                  />
+                )}
+              </span>
+              <button onClick={handleLogOut} className="btn btn-outline">
+                Logout
+              </button>
+            </>
           ) : (
             <Link to={"/login"} className="btn btn-neutral">
               Login

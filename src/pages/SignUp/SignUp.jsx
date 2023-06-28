@@ -4,13 +4,26 @@ import {FaEye, FaEyeSlash} from "react-icons/fa";
 import {useForm} from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import GoogleLogin from "../../components/GoogleLogin";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const {createUser, updateUserProfile} = useAuth();
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
   const {
     register,
     handleSubmit,
+    reset,
     formState: {errors},
   } = useForm();
 
@@ -22,9 +35,35 @@ const SignUp = () => {
     createUser(data.email, data.password)
       .then((result) => {
         const loggedUser = result.user;
-        alert("account has created successfully");
+        console.log(loggedUser);
+        updateUserProfile(data.name, data.photoURL).then(() => {
+          const saveUser = {
+            name: data.name,
+            email: data.email,
+            image: data.photoURL,
+            role: "student",
+          };
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(saveUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                reset();
+                Toast.fire({
+                  icon: "success",
+                  title: "User Created Successfully",
+                });
+                navigate("/");
+              }
+            });
+        });
       })
-      .catch((err) => alert(err.message));
+      .catch((err) => console.log(err));
   };
 
   const handleTogglePassword = () => {
@@ -160,7 +199,7 @@ const SignUp = () => {
                 </span>
               </label>
             </form>
-            <GoogleLogin/>
+            <GoogleLogin />
           </div>
         </div>
       </div>
