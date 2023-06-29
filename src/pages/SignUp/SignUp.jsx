@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {FaEye, FaEyeSlash} from "react-icons/fa";
 import {useForm} from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
@@ -8,7 +8,8 @@ import Swal from "sweetalert2";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const {createUser, updateUserProfile} = useAuth();
+  const {createUser, logout, updateUserProfile} = useAuth();
+  const navigate = useNavigate();
   const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -58,7 +59,8 @@ const SignUp = () => {
                   icon: "success",
                   title: "User Created Successfully",
                 });
-                navigate("/");
+                logout();
+                navigate("/login");
               }
             });
         });
