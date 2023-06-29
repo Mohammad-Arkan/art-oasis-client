@@ -1,12 +1,10 @@
 import React from "react";
 import {NavLink, Outlet} from "react-router-dom";
 import {
-  FaAdjust,
   FaAlignJustify,
   FaAlignLeft,
   FaAngleRight,
-  FaCaretRight,
-  FaCheckCircle,
+  FaArrowCircleRight,
   FaHistory,
   FaHome,
   FaList,
@@ -14,7 +12,6 @@ import {
   FaRegCheckCircle,
   FaShoppingCart,
   FaUser,
-  FaUserAstronaut,
   FaUserCheck,
   FaUsers,
   FaUsersCog,
@@ -41,7 +38,7 @@ const Dashboard = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
+          <ul className="menu p-4 w-80 h-full bg-base-300 text-base-content">
             {isStudent && (
               <>
                 <li>
@@ -115,16 +112,21 @@ const Dashboard = () => {
               </NavLink>
             </li>
             <li>
+              <NavLink to="/classes">
+                <FaAlignLeft />
+                Classes
+              </NavLink>
+            </li>
+            <li>
               <NavLink to="/instructors">
                 <FaUsers />
                 Instructors
               </NavLink>
             </li>
-
             <li>
-              <NavLink to="/contact">
-                <FaWhatsapp />
-                Contact
+              <NavLink to="/about">
+                <FaArrowCircleRight />
+                About
               </NavLink>
             </li>
           </ul>
