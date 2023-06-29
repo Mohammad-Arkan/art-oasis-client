@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.drawer-side a.active {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: gainsboro;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+}
+
+.drawer-side a.active::after {
+  content: "➡";
+}

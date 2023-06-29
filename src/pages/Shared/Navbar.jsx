@@ -4,7 +4,6 @@ import {
   FaAlignLeft,
   FaArrowRight,
   FaHome,
-  FaUserFriends,
   FaUsers,
 } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
