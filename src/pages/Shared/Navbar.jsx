@@ -10,7 +10,7 @@ import {
 import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
-  const {user, logout} = useAuth();
+  const {user, loading, logout} = useAuth();
   const handleLogOut = () => {
     logout();
   };
@@ -33,7 +33,7 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link>
+        <Link to={"/dashboard"}>
           <FaAlignLeft /> Dashboard
         </Link>
       </li>
@@ -89,9 +89,13 @@ const Navbar = () => {
               </button>
             </>
           ) : (
-            <Link to={"/login"} className="btn btn-neutral">
-              Login
-            </Link>
+            <>
+              {loading || (
+                <Link to={"/login"} className="btn btn-neutral">
+                  Login
+                </Link>
+              )}
+            </>
           )}
         </div>
       </div>
