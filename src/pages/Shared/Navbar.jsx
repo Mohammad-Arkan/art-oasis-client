@@ -1,6 +1,12 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {FaAlignLeft, FaArrowRight, FaHome} from "react-icons/fa";
+import {
+  FaAlignLeft,
+  FaArrowRight,
+  FaHome,
+  FaUserFriends,
+  FaUsers,
+} from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
@@ -19,6 +25,11 @@ const Navbar = () => {
       <li>
         <Link>
           <FaArrowRight /> Classes
+        </Link>
+      </li>
+      <li>
+        <Link>
+          <FaUsers /> Instructors
         </Link>
       </li>
       <li>
