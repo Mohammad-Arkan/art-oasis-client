@@ -19,6 +19,45 @@ const AddClass = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    const formData = new FormData();
+    formData.append("image", data.image[0]);
+
+    fetch(img_hosting_url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgResponse) => {
+        if (imgResponse.success) {
+          const imgURL = imgResponse.data.url;
+          const {
+            className,
+            instructorName,
+            instructorEmail,
+            price,
+            availableSeats,
+          } = data;
+          const newClass = {
+            className,
+            instructorName,
+            instructorEmail,
+            price: parseFloat(price),
+            availableSeats: parseInt(availableSeats),
+            image: imgURL,
+            status: "pending",
+          };
+          axiosSecure.post("/classes", newClass).then((data) => {
+            if (data.data.insertedId) {
+              reset();
+              Swal.fire(
+                "Good job!",
+                "New Class Added Successfully!",
+                "success"
+              );
+            }
+          });
+        }
+      });
   };
 
   return (
