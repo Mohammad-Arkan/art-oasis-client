@@ -17,11 +17,12 @@ import {
   FaUsersCog,
   FaWhatsapp,
 } from "react-icons/fa";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
+  const [isAdmin] = useAdmin();
   const isStudent = true;
   const isInstructor = true;
-  const isAdmin = true;
   return (
     <>
       <div className="drawer lg:drawer-open">
