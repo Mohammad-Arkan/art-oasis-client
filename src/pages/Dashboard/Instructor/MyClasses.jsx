@@ -17,7 +17,9 @@ const MyClasses = () => {
 
   return (
     <div className="my-20">
-      <h2 className="text-3xl font-semibold text-center">My Classes</h2>
+      <h2 className="text-3xl font-semibold text-center">
+        <span className="border-b-4 rounded-full px-10 py-2">My Classes</span>
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-14">
         {classes.map((classInfo, idx) => (
           <div

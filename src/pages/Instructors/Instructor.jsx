@@ -6,7 +6,7 @@ const Instructors = () => {
   return (
     <div>
       <>
-        <h2 className="text-center my-10 text-5xl font-semibold">
+        <h2 className="text-center my-10 text-3xl font-semibold">
           <span className="border-b-4 rounded-full px-10 py-2">
             Instructors
           </span>

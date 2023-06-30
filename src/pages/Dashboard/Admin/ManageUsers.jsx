@@ -69,8 +69,11 @@ const ManageUsers = () => {
   };
   return (
     <div className="w-full my-20">
-      <h2 className="text-3xl font-semibold text-center">Manage Users</h2>
-      <div className="overflow-x-auto my-10 mx-5">
+      <h2 className="text-3xl font-semibold text-center">
+        {" "}
+        <span className="border-b-4 rounded-full px-10 py-2">Manage Users</span>
+      </h2>
+      <div className="overflow-x-auto my-14 mx-5">
         <table className="table">
           <thead>
             <tr>
