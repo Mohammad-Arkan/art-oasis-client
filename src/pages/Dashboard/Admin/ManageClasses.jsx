@@ -1,6 +1,7 @@
 import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import {useQuery} from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const ManageClasses = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -12,7 +13,34 @@ const ManageClasses = () => {
       return res.data;
     },
   });
-  console.log(classes);
+
+  const handleApproveClass = (classInfo) => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Approve This Class",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/classes/${classInfo._id}`, {
+          method: "PATCH",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.modifiedCount > 0) {
+              refetch();
+              Swal.fire(
+                "Good job!",
+                `${classInfo.className} Course Approved Successfully`,
+                "success"
+              );
+            }
+          });
+      }
+    });
+  };
 
   return (
     <div className="my-20">
@@ -50,8 +78,25 @@ const ManageClasses = () => {
               </p>
 
               <div className="card-actions justify-center mt-3">
-                <button className="btn">Approve</button>
-                <button className="btn">Deny</button>
+                <button
+                  onClick={() => handleApproveClass(classInfo)}
+                  disabled={
+                    (classInfo.status === "approved") === true ||
+                    (classInfo.status === "denied") === true
+                  }
+                  className="btn">
+                  Approve
+                </button>
+
+                <button
+                  className="btn"
+                  disabled={
+                    (classInfo.status === "approved") === true ||
+                    (classInfo.status === "denied") === true
+                  }>
+                  Deny
+                </button>
+
                 <button className="btn">Send Feedback</button>
               </div>
             </div>

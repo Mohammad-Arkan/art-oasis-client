@@ -17,6 +17,7 @@ import EnrolledClasses from "../pages/Dashboard/Student/EnrolledClasses";
 import PaymentHistory from "../pages/Dashboard/Student/PaymentHistory";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
+import Classes from "../pages/Classes/Classes";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/classes",
-        element: <Instructors />,
+        element: <Classes />,
       },
     ],
   },
