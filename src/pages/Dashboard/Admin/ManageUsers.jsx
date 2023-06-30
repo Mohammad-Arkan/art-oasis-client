@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import {useQuery} from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const ManageUsers = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -14,6 +15,30 @@ const ManageUsers = () => {
       return res.data;
     },
   });
+
+  const handleMakeAdmin = (user) => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Make This User Admin!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+          method: "PATCH",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.modifiedCount > 0) {
+              refetch();
+              Swal.fire("Good job!", `${user.name} is an Admin Now`, "success");
+            }
+          });
+      }
+    });
+  };
   return (
     <div className="w-full my-20">
       <h2 className="text-3xl font-semibold text-center">Manage Users</h2>
@@ -48,7 +73,11 @@ const ManageUsers = () => {
                 <td>{user.role}</td>
                 <th className=" space-x-1 ">
                   <button className="btn btn-xs">Make Instructor</button>
-                  <button className="btn btn-xs">Make Admin</button>
+                  <button
+                    onClick={() => handleMakeAdmin(user)}
+                    className="btn btn-xs">
+                    Make Admin
+                  </button>
                 </th>
               </tr>
             ))}
