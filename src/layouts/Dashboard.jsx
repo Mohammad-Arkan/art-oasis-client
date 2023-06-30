@@ -15,7 +15,6 @@ import {
   FaUserCheck,
   FaUsers,
   FaUsersCog,
-  FaWhatsapp,
 } from "react-icons/fa";
 import useAdmin from "../hooks/useAdmin";
 
