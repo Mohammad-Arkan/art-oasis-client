@@ -39,6 +39,34 @@ const ManageUsers = () => {
       }
     });
   };
+
+  const handleMakeInstructor = (user) => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Make This User Instructor!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+          method: "PATCH",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.modifiedCount > 0) {
+              refetch();
+              Swal.fire(
+                "Good job!",
+                `${user.name} is an Instructor Now`,
+                "success"
+              );
+            }
+          });
+      }
+    });
+  };
   return (
     <div className="w-full my-20">
       <h2 className="text-3xl font-semibold text-center">Manage Users</h2>
@@ -72,7 +100,11 @@ const ManageUsers = () => {
                 <td>{user.email}</td>
                 <td>{user.role}</td>
                 <th className=" space-x-1 ">
-                  <button className="btn btn-xs">Make Instructor</button>
+                  <button
+                    onClick={() => handleMakeInstructor(user)}
+                    className="btn btn-xs">
+                    Make Instructor
+                  </button>
                   <button
                     onClick={() => handleMakeAdmin(user)}
                     className="btn btn-xs">
