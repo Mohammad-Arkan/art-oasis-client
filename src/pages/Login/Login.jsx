@@ -4,6 +4,7 @@ import {FaEye, FaEyeSlash} from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import GoogleLogin from "../../components/GoogleLogin";
 import {useForm} from "react-hook-form";
+import {Toast} from "../SignUp/SignUp";
 
 const Login = () => {
   const {signIn} = useAuth();
@@ -20,8 +21,10 @@ const Login = () => {
   const onSubmit = (data) => {
     signIn(data.email, data.password)
       .then((result) => {
-        const loggedUser = result.user;
-        alert("user logged successfully");
+        Toast.fire({
+          icon: "success",
+          title: "User Logged In Successfully",
+        });
         navigate(from, {replace: true});
       })
       .catch((err) => alert(err.message));

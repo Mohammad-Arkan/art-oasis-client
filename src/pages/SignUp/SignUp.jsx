@@ -5,22 +5,22 @@ import {useForm} from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import GoogleLogin from "../../components/GoogleLogin";
 import Swal from "sweetalert2";
+export const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener("mouseenter", Swal.stopTimer);
+    toast.addEventListener("mouseleave", Swal.resumeTimer);
+  },
+});
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const {createUser, logout, updateUserProfile} = useAuth();
   const navigate = useNavigate();
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
   const {
     register,
     handleSubmit,

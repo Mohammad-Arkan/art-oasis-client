@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import {useQuery} from "@tanstack/react-query";
@@ -102,11 +102,13 @@ const ManageUsers = () => {
                 <th className=" space-x-1 ">
                   <button
                     onClick={() => handleMakeInstructor(user)}
+                    disabled={user.role === "instructor"}
                     className="btn btn-xs">
                     Make Instructor
                   </button>
                   <button
                     onClick={() => handleMakeAdmin(user)}
+                    disabled={user.role === "admin"}
                     className="btn btn-xs">
                     Make Admin
                   </button>
