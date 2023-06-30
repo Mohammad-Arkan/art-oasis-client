@@ -18,10 +18,11 @@ import {
 } from "react-icons/fa";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
+import useStudent from "../hooks/useStudent";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
-  const isStudent = true;
+  const [isStudent] = useStudent();
   const [, isInstructor] = useInstructor();
   return (
     <>

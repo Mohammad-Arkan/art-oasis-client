@@ -52,15 +52,27 @@ const router = createBrowserRouter([
     children: [
       {
         path: "selected-classes",
-        element: <SelectedClasses />,
+        element: (
+          <PrivateRoute>
+            <SelectedClasses />
+          </PrivateRoute>
+        ),
       },
       {
         path: "enrolled-classes",
-        element: <EnrolledClasses />,
+        element: (
+          <PrivateRoute>
+            <EnrolledClasses />
+          </PrivateRoute>
+        ),
       },
       {
         path: "payment-history",
-        element: <PaymentHistory />,
+        element: (
+          <PrivateRoute>
+            <PaymentHistory />
+          </PrivateRoute>
+        ),
       },
       {
         path: "instructor/my-classes",
