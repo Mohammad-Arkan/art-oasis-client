@@ -2,11 +2,12 @@ import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import {useQuery} from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import {Link} from "react-router-dom";
 
 const ManageClasses = () => {
   const [axiosSecure] = useAxiosSecure();
 
-  const {data: classes = []} = useQuery({
+  const {data: classes = [], refetch} = useQuery({
     queryKey: ["classes"],
     queryFn: async () => {
       const res = await axiosSecure.get("/classes");
@@ -61,19 +62,15 @@ const ManageClasses = () => {
               <h2 className="card-title text-[18px]">
                 Class Name: {classInfo.className}
               </h2>
-              <p className="text-[16px] font-semibold">
-                Status: {classInfo.status}
-              </p>
-              <p className="text-[16px] font-semibold">
-                Class Price: ${classInfo.price}
-              </p>
-              <p className="text-[16px] font-semibold">
+              <p className="card-info">Status: {classInfo.status}</p>
+              <p className="card-info">Class Price: ${classInfo.price}</p>
+              <p className="card-info">
                 Available Seats: {classInfo.availableSeats}
               </p>
-              <p className="text-[16px] font-semibold">
+              <p className="card-info">
                 Instructor Name: {classInfo.instructorName}
               </p>
-              <p className="text-[16px] font-semibold">
+              <p className="card-info">
                 Instructor Email: {classInfo.instructorEmail}
               </p>
 
@@ -96,8 +93,9 @@ const ManageClasses = () => {
                   }>
                   Deny
                 </button>
-
-                <button className="btn">Send Feedback</button>
+                <button className="btn">
+                  <Link to={`/feedback/${classInfo._id}`}>Send Feedback</Link>
+                </button>
               </div>
             </div>
           </div>

@@ -2,6 +2,7 @@ import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import {useQuery} from "@tanstack/react-query";
+import {FaEdit} from "react-icons/fa";
 
 const MyClasses = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -30,21 +31,22 @@ const MyClasses = () => {
             </figure>
             <div className="card-body">
               <h2 className="card-title text-xl">{classInfo.className}</h2>
-              <p className="text-[16px] font-semibold">
-                Status: {classInfo.status}
-              </p>
-              <p className="text-[16px] font-semibold">
-                Price: ${classInfo.price}
-              </p>
-              <p className="text-[16px] font-semibold">
+              <p className="card-info">Status: {classInfo.status}</p>
+              <p className="card-info">Price: ${classInfo.price}</p>
+              <p className="card-info">
                 Enrolled Students: {classInfo?.enrolledStudents || "0"}
               </p>
+              {classInfo.status === "denied" ||
+                (classInfo.status === "approved" && (
+                  <p className="card-info">
+                    Feedback: {classInfo?.feedback || "No Feedback"}
+                  </p>
+                ))}
 
-              <div className="card-actions justify-end">
-                <button className="btn">EDIT</button>
-                {classInfo.status === "denied" && (
-                  <button className="btn">Feedback</button>
-                )}
+              <div className="card-actions justify-end absolute -right-3 -top-3">
+                <button className="btn btn-neutral btn-circle text-xl">
+                  <FaEdit />
+                </button>
               </div>
             </div>
           </div>

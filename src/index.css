@@ -9,3 +9,7 @@
 .drawer-side a.active::after {
   content: "✔";
 }
+
+.card-info {
+  @apply text-[16px] font-semibold;
+}
