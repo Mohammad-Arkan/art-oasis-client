@@ -1,10 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import {FaAlignLeft, FaArrowRight, FaHome, FaUsers} from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
   const {user, loading, logout} = useAuth();
+  const [toggleTheme, setToggleTheme] = useState(true);
+
+  const handleToggleTheme = () => {
+    setToggleTheme(!toggleTheme);
+  };
+
   const handleLogOut = () => {
     logout();
   };
@@ -59,17 +65,30 @@ const Navbar = () => {
               {navItems}
             </ul>
           </div>
-          <Link to={"/"} className="btn btn-ghost normal-case text-xl">
+          <Link to={"/"} className="btn btn-ghost normal-case text-xl mr-2">
             Art Oasis
           </Link>
+          <div className="hidden md:flex gap-3">
+            <input
+              onClick={handleToggleTheme}
+              type="checkbox"
+              className="toggle"
+            />
+            <span className="font-semibold">Light / Dark </span>
+          </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
         </div>
         <div className="navbar-end">
-          {user ? (
+          {user && (
             <>
-              <span className="mr-3">
+              <span
+                className="font-semibold hidden md:flex"
+                title={user?.displayName}>
+                {user?.displayName}
+              </span>
+              <span className="mx-3">
                 {user.photoURL && (
                   <img
                     src={user.photoURL}
@@ -78,10 +97,14 @@ const Navbar = () => {
                   />
                 )}
               </span>
-              <button onClick={handleLogOut} className="btn btn-outline">
-                Logout
-              </button>
             </>
+          )}
+          {user ? (
+            <button
+              onClick={handleLogOut}
+              className="btn btn-outline btn-sm md:btn-md">
+              Logout
+            </button>
           ) : (
             <>
               {loading || (

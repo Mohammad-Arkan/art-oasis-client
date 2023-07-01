@@ -19,6 +19,7 @@ import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
 import SendFeedback from "../pages/Dashboard/Admin/SendFeedback";
 import Classes from "../pages/Classes/Classes";
+import UpdateClass from "../pages/Dashboard/Instructor/UpdateClass";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,14 @@ const router = createBrowserRouter([
           <AdminRoute>
             <SendFeedback />
           </AdminRoute>
+        ),
+      },
+      {
+        path: "/update/class/:id",
+        element: (
+          <InstructorRoute>
+            <UpdateClass />
+          </InstructorRoute>
         ),
       },
     ],

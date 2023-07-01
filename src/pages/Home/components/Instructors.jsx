@@ -1,5 +1,6 @@
 import React from "react";
 import useInstructor from "../../../hooks/useInstructor";
+import {Bounce, Fade, Flip} from "react-awesome-reveal";
 
 const Instructors = () => {
   const [instructors] = useInstructor();
@@ -16,17 +17,19 @@ const Instructors = () => {
             <div
               className="card p-3  bg-base-100 shadow-xl"
               key={instructor._id}>
-              <figure>
-                <img
-                  className="rounded-lg"
-                  width={400}
-                  src={instructor.image}
-                />
-              </figure>
-              <div className="card-body p-5">
-                <h2 className="card-title text-2xl">{instructor.name}</h2>
-                <p className="text-xl">{instructor.email}</p>
-              </div>
+              <Fade>
+                <figure>
+                  <img
+                    className="rounded-lg"
+                    width={400}
+                    src={instructor.image}
+                  />
+                </figure>
+                <div className="card-body p-5">
+                  <h2 className="card-title text-2xl">{instructor.name}</h2>
+                  <p className="text-xl">{instructor.email}</p>
+                </div>
+              </Fade>
             </div>
           ))}
         </div>

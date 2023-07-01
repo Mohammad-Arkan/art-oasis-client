@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import {useQuery} from "@tanstack/react-query";
 import {FaEdit} from "react-icons/fa";
+import {Link} from "react-router-dom";
 
 const MyClasses = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -57,9 +58,11 @@ const MyClasses = () => {
               )}
 
               <div className="card-actions justify-end absolute -right-3 -top-3">
-                <button className="btn btn-neutral btn-circle text-xl">
-                  <FaEdit />
-                </button>
+                <Link to={`/update/class/${classInfo._id}`}>
+                  <button className="btn btn-neutral btn-circle text-xl">
+                    <FaEdit />
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
