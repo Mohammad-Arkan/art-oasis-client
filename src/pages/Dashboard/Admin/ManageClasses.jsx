@@ -25,7 +25,7 @@ const ManageClasses = () => {
       confirmButtonText: "Yes, Approve This Class",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/classes/${classInfo._id}`, {
+        fetch(`http://localhost:5000/approve/classes/${classInfo._id}`, {
           method: "PATCH",
         })
           .then((res) => res.json())
@@ -35,6 +35,34 @@ const ManageClasses = () => {
               Swal.fire(
                 "Good job!",
                 `${classInfo.className} Course Approved Successfully`,
+                "success"
+              );
+            }
+          });
+      }
+    });
+  };
+
+  const handleDenyClass = (classInfo) => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Deny This Class",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/deny/classes/${classInfo._id}`, {
+          method: "PATCH",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.modifiedCount > 0) {
+              refetch();
+              Swal.fire(
+                "Good job!",
+                `[${classInfo.className}] Course Denied Successfully`,
                 "success"
               );
             }
@@ -87,6 +115,7 @@ const ManageClasses = () => {
 
                 <button
                   className="btn"
+                  onClick={() => handleDenyClass(classInfo)}
                   disabled={
                     (classInfo.status === "approved") === true ||
                     (classInfo.status === "denied") === true

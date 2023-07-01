@@ -25,23 +25,36 @@ const MyClasses = () => {
         {classes.map((classInfo, idx) => (
           <div
             key={idx}
-            className="card card-compact w-96 bg-base-100 shadow-xl mx-5">
+            className="card card-compact w-96 bg-base-100 shadow-xl mx-5 p-3">
             <figure>
-              <img src={classInfo.image} />
+              <img className="rounded-lg" src={classInfo.image} />
             </figure>
             <div className="card-body">
               <h2 className="card-title text-xl">{classInfo.className}</h2>
-              <p className="card-info">Status: {classInfo.status}</p>
+              <p className="card-info">
+                Status:{" "}
+                <span
+                  className={`${
+                    classInfo.status === "approved" && "text-success"
+                  } ${classInfo.status === "denied" && "text-error"}`}>
+                  {classInfo.status}
+                </span>
+              </p>
               <p className="card-info">Price: ${classInfo.price}</p>
               <p className="card-info">
                 Enrolled Students: {classInfo?.enrolledStudents || "0"}
               </p>
-              {classInfo.status === "denied" ||
-                (classInfo.status === "approved" && (
-                  <p className="card-info">
-                    Feedback: {classInfo?.feedback || "No Feedback"}
-                  </p>
-                ))}
+
+              {classInfo.status === "denied" && (
+                <p className="card-info">
+                  Feedback: {classInfo?.feedback || "No Feedback"}
+                </p>
+              )}
+              {classInfo.status === "approved" && (
+                <p className="card-info">
+                  Feedback: {classInfo?.feedback || "No Feedback"}
+                </p>
+              )}
 
               <div className="card-actions justify-end absolute -right-3 -top-3">
                 <button className="btn btn-neutral btn-circle text-xl">

@@ -45,6 +45,7 @@ const AddClass = () => {
             availableSeats: parseInt(availableSeats),
             image: imgURL,
             status: "pending",
+            enrolledStudents: 0,
           };
           axiosSecure.post("/classes", newClass).then((data) => {
             if (data.data.insertedId) {
