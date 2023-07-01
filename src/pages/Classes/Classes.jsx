@@ -1,9 +1,16 @@
 import React from "react";
 import {FaBookmark} from "react-icons/fa";
 import useApprovedClasses from "../../hooks/useApprovedClasses";
+import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
+import useSelectClass from "../../hooks/useSelectClass";
 
 const Classes = () => {
   const [classes] = useApprovedClasses();
+  const [isAdmin] = useAdmin();
+  const [, isInstructor] = useInstructor();
+  const [handleSelectClass] = useSelectClass();
+
   return (
     <div className="my-10">
       <h2 className="text-3xl font-semibold text-center">
@@ -27,7 +34,10 @@ const Classes = () => {
               </p>
               <p className="card-info">Price: ${classInfo.price}</p>
               <div className="card-actions mt-2">
-                <button className="btn btn-block btn-neutral text-[16px]">
+                <button
+                  onClick={() => handleSelectClass(classInfo)}
+                  className="btn btn-block btn-neutral text-[16px]"
+                  disabled={isAdmin || isInstructor}>
                   <FaBookmark /> Select
                 </button>
               </div>

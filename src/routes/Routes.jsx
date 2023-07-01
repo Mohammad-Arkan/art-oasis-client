@@ -17,8 +17,8 @@ import EnrolledClasses from "../pages/Dashboard/Student/EnrolledClasses";
 import PaymentHistory from "../pages/Dashboard/Student/PaymentHistory";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
-import ApprovedClasses from "../pages/Home/components/ApprovedClasses";
 import SendFeedback from "../pages/Dashboard/Admin/SendFeedback";
+import Classes from "../pages/Classes/Classes";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/classes",
-        element: <ApprovedClasses />,
+        element: <Classes />,
       },
       {
         path: "/feedback/:id",
