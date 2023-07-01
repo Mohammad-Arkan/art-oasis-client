@@ -11,7 +11,6 @@ const useStudent = () => {
     queryKey: ["isStudent", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/student/${user?.email}`);
-      console.log(res.data.student);
       return res.data.student;
     },
   });

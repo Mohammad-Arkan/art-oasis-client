@@ -3,11 +3,12 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import {useQuery} from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import {FaShoppingCart} from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const SelectedClasses = () => {
   const {user} = useAuth();
   const [axiosSecure] = useAxiosSecure();
-  const {data: selectedClass = [], refetch} = useQuery({
+  const {data: selectedClasses = [], refetch} = useQuery({
     queryKey: ["selected", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/selected/classes/${user?.email}`);
@@ -15,14 +16,39 @@ const SelectedClasses = () => {
     },
   });
 
-  console.log(selectedClass);
+  const handleDeleteClass = (classInfo) => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/selected/class/${classInfo._id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            Swal.fire(
+              "Good job!",
+              `[${classInfo.className}] Course Deleted from Selected Class`,
+              "success"
+            );
+            refetch();
+          }
+        });
+      }
+    });
+  };
+
   return (
     <div className="my-20">
       <h2 className="text-3xl font-semibold text-center">
-        <span className="border-b-4 rounded-full px-10 py-2">My Classes</span>
+        <span className="border-b-4 rounded-full px-10 py-2">
+          Selected Classes
+        </span>
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-14">
-        {selectedClass.map((classInfo, idx) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-20">
+        {selectedClasses.map((classInfo, idx) => (
           <div
             key={idx}
             className="card card-compact w-96 bg-base-100 shadow-xl mx-5 p-3">
@@ -38,13 +64,16 @@ const SelectedClasses = () => {
               <p className="card-info">
                 Instructor Email: {classInfo.instructorEmail}
               </p>
-
               <button className="btn mt-4 text-[16px] btn-outline">
                 <FaShoppingCart /> PAY NOW
               </button>
 
               <div className="card-actions justify-end absolute -right-3 -top-3">
-                <button className="btn btn-circle btn-outline text-xl">
+                <button
+                  onClick={() => {
+                    handleDeleteClass(classInfo);
+                  }}
+                  className="btn btn-circle btn-outline text-xl">
                   &#10005;
                 </button>
               </div>
