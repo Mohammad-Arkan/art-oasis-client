@@ -1,14 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import {useForm} from "react-hook-form";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
+import {Helmet} from "react-helmet-async";
 
 const img_hosting_token = import.meta.env.VITE_Img_Hosting_Token;
 
 const AddClass = () => {
   const [axiosSecure] = useAxiosSecure();
   const {user} = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
   const {
     handleSubmit,
     register,
@@ -18,7 +20,7 @@ const AddClass = () => {
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 
   const onSubmit = (data) => {
-    console.log(data);
+    setIsLoading(true);
     const formData = new FormData();
     formData.append("image", data.image[0]);
 
@@ -49,6 +51,7 @@ const AddClass = () => {
           };
           axiosSecure.post("/classes", newClass).then((data) => {
             if (data.data.insertedId) {
+              setIsLoading(false);
               reset();
               Swal.fire(
                 "Good job!",
@@ -63,6 +66,9 @@ const AddClass = () => {
 
   return (
     <div className="w-full">
+      <Helmet>
+        <title>Art Oasis | Add Class</title>
+      </Helmet>
       <div className="mx-5">
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -148,6 +154,7 @@ const AddClass = () => {
           <input
             className="btn btn-outline btn-sm"
             type="submit"
+            disabled={isLoading}
             value="Add Class"
           />
         </form>

@@ -4,6 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 import {useQuery} from "@tanstack/react-query";
 import {FaEdit} from "react-icons/fa";
 import {Link} from "react-router-dom";
+import {Helmet} from "react-helmet-async";
 
 const MyClasses = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -19,6 +20,9 @@ const MyClasses = () => {
 
   return (
     <div className="my-20">
+      <Helmet>
+        <title>Art Oasis | My Classes</title>
+      </Helmet>
       <h2 className="text-3xl font-semibold text-center">
         <span className="border-b-4 rounded-full px-10 py-2">My Classes</span>
       </h2>

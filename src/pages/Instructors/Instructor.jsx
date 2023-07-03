@@ -1,11 +1,15 @@
 import React from "react";
 import useInstructor from "../../hooks/useInstructor";
+import {Helmet} from "react-helmet-async";
 
 const Instructors = () => {
   const [instructors] = useInstructor();
   return (
     <div>
       <>
+        <Helmet>
+          <title>Art Oasis | Instructor</title>
+        </Helmet>
         <h2 className="text-center my-10 text-3xl font-semibold">
           <span className="border-b-4 rounded-full px-10 py-2">
             Instructors

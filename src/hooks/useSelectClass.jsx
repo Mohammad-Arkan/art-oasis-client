@@ -2,12 +2,14 @@ import {useLocation, useNavigate} from "react-router-dom";
 import useAuth from "./useAuth";
 import useAxiosSecure from "./useAxiosSecure";
 import Swal from "sweetalert2";
+import {useState} from "react";
 
 const useSelectClass = () => {
   const {user} = useAuth();
   const [axiosSecure] = useAxiosSecure();
   const navigate = useNavigate();
   const location = useLocation();
+  const [selectedClass, setSelectedClass] = useState([]);
 
   const handleSelectClass = (classInfo) => {
     if (user) {
@@ -22,6 +24,7 @@ const useSelectClass = () => {
         instructorName,
         instructorEmail,
       };
+
       axiosSecure.post("/selected/class", selectedClass).then((data) => {
         if (data.data.insertedId) {
           Swal.fire("Good job!", "Class Selected Successfully!", "success");

@@ -4,6 +4,8 @@ import {useQuery} from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import {FaShoppingCart} from "react-icons/fa";
 import Swal from "sweetalert2";
+import {Link} from "react-router-dom";
+import {Helmet} from "react-helmet-async";
 
 const SelectedClasses = () => {
   const {user} = useAuth();
@@ -42,6 +44,9 @@ const SelectedClasses = () => {
 
   return (
     <div className="my-20">
+      <Helmet>
+        <title>Art Oasis | Selected Classes</title>
+      </Helmet>
       <h2 className="text-3xl font-semibold text-center">
         <span className="border-b-4 rounded-full px-10 py-2">
           Selected Classes
@@ -64,9 +69,11 @@ const SelectedClasses = () => {
               <p className="card-info">
                 Instructor Email: {classInfo.instructorEmail}
               </p>
-              <button className="btn mt-4 text-[16px] btn-outline">
+              <Link
+                className="btn mt-4 text-[16px] btn-outline"
+                to={`/dashboard/payment/${classInfo._id}`}>
                 <FaShoppingCart /> PAY NOW
-              </button>
+              </Link>
 
               <div className="card-actions justify-end absolute -right-3 -top-3">
                 <button

@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import {useParams} from "react-router-dom";
 import {useQuery} from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import {Helmet} from "react-helmet-async";
 
 const UpdateClass = () => {
   const {id} = useParams();
@@ -57,6 +58,9 @@ const UpdateClass = () => {
 
   return (
     <div className="w-full">
+      <Helmet>
+        <title>Art Oasis | Update Class</title>
+      </Helmet>
       <div className="flex justify-center mt-10">
         <img className="rounded-xl" width={400} src={classInfo.image} alt="" />
       </div>

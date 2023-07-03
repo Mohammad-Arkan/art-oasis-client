@@ -1,8 +1,12 @@
+import {Helmet} from "react-helmet-async";
 import {Link} from "react-router-dom";
 
 const ErrorPage = () => {
   return (
     <div className=" font-semibold text-center mt-20">
+      <Helmet>
+        <title>404 Not Found</title>
+      </Helmet>
       <h2 className="text-5xl">ERROR 404</h2>
       <Link className="text-blue-400" to={"/"}>
         BACK TO HOME

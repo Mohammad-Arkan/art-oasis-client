@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import {useQuery} from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import {Helmet} from "react-helmet-async";
 
 const ManageUsers = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -69,6 +70,9 @@ const ManageUsers = () => {
   };
   return (
     <div className="w-full my-20">
+      <Helmet>
+        <title>Art Oasis | Manage Users</title>
+      </Helmet>
       <h2 className="text-3xl font-semibold text-center">
         {" "}
         <span className="border-b-4 rounded-full px-10 py-2">Manage Users</span>

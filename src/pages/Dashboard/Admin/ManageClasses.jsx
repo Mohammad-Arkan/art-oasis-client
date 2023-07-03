@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import {useQuery} from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import {Link} from "react-router-dom";
+import {Helmet} from "react-helmet-async";
 
 const ManageClasses = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -73,6 +74,9 @@ const ManageClasses = () => {
 
   return (
     <div className="my-20">
+      <Helmet>
+        <title>Art Oasis | Manage Classes</title>
+      </Helmet>
       <h2 className="text-3xl font-semibold text-center">
         <span className="border-b-4 rounded-full px-10 py-2">
           Manage Classes

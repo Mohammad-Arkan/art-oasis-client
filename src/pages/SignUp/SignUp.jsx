@@ -5,6 +5,7 @@ import {useForm} from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import GoogleLogin from "../../components/GoogleLogin";
 import Swal from "sweetalert2";
+import {Helmet} from "react-helmet-async";
 export const Toast = Swal.mixin({
   toast: true,
   position: "top-end",
@@ -75,6 +76,9 @@ const SignUp = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Art Oasis | Sign Up</title>
+      </Helmet>
       <div>
         <div className="w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-[10vh]">
           <div className="card shadow-2xl">

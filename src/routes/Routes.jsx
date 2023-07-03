@@ -20,6 +20,7 @@ import InstructorRoute from "./InstructorRoute";
 import SendFeedback from "../pages/Dashboard/Admin/SendFeedback";
 import Classes from "../pages/Classes/Classes";
 import UpdateClass from "../pages/Dashboard/Instructor/UpdateClass";
+import Payment from "../pages/Dashboard/Student/Payment";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +79,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <SelectedClasses />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "payment/:id",
+        element: (
+          <PrivateRoute>
+            <Payment />
           </PrivateRoute>
         ),
       },

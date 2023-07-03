@@ -4,6 +4,7 @@ import useApprovedClasses from "../../hooks/useApprovedClasses";
 import useAdmin from "../../hooks/useAdmin";
 import useInstructor from "../../hooks/useInstructor";
 import useSelectClass from "../../hooks/useSelectClass";
+import {Helmet} from "react-helmet-async";
 
 const Classes = () => {
   const [classes] = useApprovedClasses();
@@ -13,6 +14,9 @@ const Classes = () => {
 
   return (
     <div className="my-10">
+      <Helmet>
+        <title>Art Oasis | Classes</title>
+      </Helmet>
       <h2 className="text-3xl font-semibold text-center">
         <span className="border-b-4 rounded-full px-10 py-2">All Classes</span>
       </h2>

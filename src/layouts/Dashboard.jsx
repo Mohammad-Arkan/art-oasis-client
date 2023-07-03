@@ -9,9 +9,7 @@ import {
   FaHome,
   FaList,
   FaListAlt,
-  FaRegCheckCircle,
   FaShoppingCart,
-  FaUser,
   FaUserCheck,
   FaUsers,
   FaUsersCog,
@@ -44,11 +42,6 @@ const Dashboard = () => {
             {isStudent && (
               <>
                 <li>
-                  <NavLink to={"/dashboard/student"}>
-                    <FaUser /> Student Panel
-                  </NavLink>
-                </li>
-                <li>
                   <NavLink to={"/dashboard/selected-classes"}>
                     <FaAngleRight /> Selected Classes
                   </NavLink>
@@ -68,11 +61,6 @@ const Dashboard = () => {
 
             {isInstructor && (
               <>
-                <li>
-                  <NavLink to={"/dashboard/instructor-panel"}>
-                    <FaRegCheckCircle /> Instructor Panel
-                  </NavLink>
-                </li>
                 <li>
                   <NavLink to={"/dashboard/instructor/my-classes"}>
                     <FaAlignLeft /> My Classes

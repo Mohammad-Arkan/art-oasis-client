@@ -13,17 +13,17 @@ const ApprovedClasses = () => {
   const [handleSelectClass] = useSelectClass();
 
   return (
-    <div className="my-10">
+    <div className="my-14">
       <h2 className="text-3xl font-semibold text-center">
         <span className="border-b-4 rounded-full px-10 py-2">
           Popular Classes
         </span>
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-14">
         {classes.slice(0, 6).map((classInfo, idx) => (
           <div
             key={idx}
-            className="card card-compact w-11/12 bg-base-100 shadow-xl mx-5  flex justify-between">
+            className="card card-compact w-11/12 bg-base-100 shadow-xl mx-auto flex justify-between mt-5">
             <Fade>
               <figure>
                 <img className="rounded-lg" src={classInfo.image} />

@@ -3,6 +3,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import {useQuery} from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import {Helmet} from "react-helmet-async";
 
 const SendFeedback = () => {
   const {id} = useParams();
@@ -31,6 +32,9 @@ const SendFeedback = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Art Oasis | Send Feedback</title>
+      </Helmet>
       <div className="flex flex-col items-center mt-10">
         <h2 className="font-semibold my-3">
           [ Write Feedback To {classInfo.className} ]
