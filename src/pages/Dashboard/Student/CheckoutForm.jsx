@@ -3,6 +3,8 @@ import React, {useEffect, useState} from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import {Helmet} from "react-helmet-async";
+import Swal from "sweetalert2";
+import moment from "moment";
 
 const CheckoutForm = ({price, classInfo}) => {
   const stripe = useStripe();
@@ -60,7 +62,7 @@ const CheckoutForm = ({price, classInfo}) => {
     if (confirmError) {
       console.log(confirmError);
     }
-    console.log("payment intent", paymentIntent);
+
     setProcessing(false);
 
     if (paymentIntent.status === "succeeded") {
@@ -70,16 +72,18 @@ const CheckoutForm = ({price, classInfo}) => {
         transactionId: paymentIntent.id,
         classId: classInfo.classId,
         className: classInfo.className,
+        classImage: classInfo.classImage,
         instructorName: classInfo.instructorName,
         instructorEmail: classInfo.instructorEmail,
-        data: new Date(),
+        date: moment(new Date()).format("llll"),
         price,
       };
 
       axiosSecure.post("/payments", payment).then((res) => {
-        console.log(res.data);
         if (res.data.insertResult.insertedId) {
-          alert("payment complete");
+          Swal.fire("Good job!", "Payment Completed Successfully!", "success");
+          const classId = classInfo.classId;
+          axiosSecure.patch(`/class/updateCount/${classId}`);
         }
       });
     }
@@ -89,6 +93,7 @@ const CheckoutForm = ({price, classInfo}) => {
       <Helmet>
         <title>Art Oasis | Checkout</title>
       </Helmet>
+
       <form onSubmit={handleSubmit}>
         <CardElement
           options={{

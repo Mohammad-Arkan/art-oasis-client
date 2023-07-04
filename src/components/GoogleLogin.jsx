@@ -12,8 +12,29 @@ const GoogleLogin = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
-        console.log(result.user);
-        navigate(from, {replace: true});
+        const user = result.user;
+        const saveUser = {
+          name: user.displayName,
+          email: user.email,
+          image: user.photoURL,
+          role: "student",
+        };
+        fetch("https://art-oasis-server.vercel.app/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(saveUser),
+        }).then((data) => {
+          if (data.insertedId) {
+            reset();
+            Toast.fire({
+              icon: "success",
+              title: "User Logged In Successfully",
+            });
+          }
+          navigate(from, {replace: true});
+        });
       })
       .catch((err) => alert(err.message));
   };

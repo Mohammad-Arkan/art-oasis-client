@@ -5,6 +5,7 @@ import {
   FaAlignLeft,
   FaAngleRight,
   FaArrowCircleRight,
+  FaCheckDouble,
   FaHistory,
   FaHome,
   FaList,
@@ -39,6 +40,10 @@ const Dashboard = () => {
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 h-full bg-base-300 text-base-content">
+            <div className="mb-3 flex items-center gap-2 mx-3">
+              <FaCheckDouble />
+              <span className="font-semibold text-lg">Dashboard</span>
+            </div>
             {isStudent && (
               <>
                 <li>

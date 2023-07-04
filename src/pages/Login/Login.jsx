@@ -67,11 +67,11 @@ const Login = () => {
                 placeholder="password"
                 className="input input-bordered"
               />
-              <button
+              <span
                 onClick={handleTogglePassword}
                 className="absolute right-5 bottom-12 ">
                 {showPassword ? <FaEye /> : <FaEyeSlash />}
-              </button>
+              </span>
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
                   Forgot password?

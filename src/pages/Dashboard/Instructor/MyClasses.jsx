@@ -9,7 +9,7 @@ import {Helmet} from "react-helmet-async";
 const MyClasses = () => {
   const [axiosSecure] = useAxiosSecure();
   const {user, loading} = useAuth();
-  const {refetch, data: classes = []} = useQuery({
+  const {data: classes = []} = useQuery({
     queryKey: ["classes", user?.email],
     enabled: !loading && !!user?.email,
     queryFn: async () => {

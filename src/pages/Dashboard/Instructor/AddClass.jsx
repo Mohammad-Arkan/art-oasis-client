@@ -70,9 +70,14 @@ const AddClass = () => {
         <title>Art Oasis | Add Class</title>
       </Helmet>
       <div className="mx-5">
+        <h2 className="text-3xl font-semibold text-center mt-20">
+          <span className="border-b-4 rounded-full px-10 py-2">
+            Add A Class
+          </span>
+        </h2>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="space-y-1 mt-20 lg:mt-0">
+          className="space-y-1 pt-10 lg:mt-0">
           <div className="form-control">
             <label className="label">
               <span className="label-text font-semibold">Class Name*</span>
@@ -120,7 +125,9 @@ const AddClass = () => {
           <div className="flex gap-3 pt-3">
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text">Available Seats*</span>
+                <span className="label-text font-semibold">
+                  Available Seats*
+                </span>
               </label>
               <input
                 type="number"
@@ -143,7 +150,7 @@ const AddClass = () => {
           </div>
           <div className="form-control pb-2">
             <label className="label">
-              <span className="label-text">Class Image*</span>
+              <span className="label-text font-semibold">Class Image*</span>
             </label>
             <input
               type="file"

@@ -26,7 +26,9 @@ const Payment = () => {
         <title>Art Oasis | Payment</title>
       </Helmet>
       <h2 className="text-3xl font-semibold text-center mt-24 mb-20">
-        <span className="border-b-4 rounded-full px-10 py-2">Payment</span>
+        <span className="border-b-4 rounded-full px-10 py-2">
+          Payment: ${selectedClass.price}
+        </span>
       </h2>
       <Elements stripe={stripePromise}>
         <CheckoutForm price={selectedClass.price} classInfo={selectedClass} />

@@ -1,15 +1,13 @@
-import {useLocation, useNavigate} from "react-router-dom";
+import {Navigate, useLocation, useNavigate} from "react-router-dom";
 import useAuth from "./useAuth";
 import useAxiosSecure from "./useAxiosSecure";
 import Swal from "sweetalert2";
-import {useState} from "react";
 
 const useSelectClass = () => {
   const {user} = useAuth();
   const [axiosSecure] = useAxiosSecure();
   const navigate = useNavigate();
   const location = useLocation();
-  const [selectedClass, setSelectedClass] = useState([]);
 
   const handleSelectClass = (classInfo) => {
     if (user) {

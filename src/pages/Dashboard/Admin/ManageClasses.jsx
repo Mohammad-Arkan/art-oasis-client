@@ -4,17 +4,10 @@ import {useQuery} from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet-async";
+import useClasses from "../../../hooks/useClasses";
 
 const ManageClasses = () => {
-  const [axiosSecure] = useAxiosSecure();
-
-  const {data: classes = [], refetch} = useQuery({
-    queryKey: ["classes"],
-    queryFn: async () => {
-      const res = await axiosSecure.get("/classes");
-      return res.data;
-    },
-  });
+  const [classes, refetch] = useClasses();
 
   const handleApproveClass = (classInfo) => {
     Swal.fire({
@@ -26,9 +19,12 @@ const ManageClasses = () => {
       confirmButtonText: "Yes, Approve This Class",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/approve/classes/${classInfo._id}`, {
-          method: "PATCH",
-        })
+        fetch(
+          `https://art-oasis-server.vercel.app/approve/classes/${classInfo._id}`,
+          {
+            method: "PATCH",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.modifiedCount > 0) {
@@ -54,9 +50,12 @@ const ManageClasses = () => {
       confirmButtonText: "Yes, Deny This Class",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/deny/classes/${classInfo._id}`, {
-          method: "PATCH",
-        })
+        fetch(
+          `https://art-oasis-server.vercel.app/deny/classes/${classInfo._id}`,
+          {
+            method: "PATCH",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.modifiedCount > 0) {
@@ -86,7 +85,7 @@ const ManageClasses = () => {
         {classes.map((classInfo, idx) => (
           <div
             key={idx}
-            className="card card-compact w-96 bg-base-100 shadow-xl mx-5">
+            className="card card-compact w-96 bg-base-100 shadow-xl mx-5 mt-5">
             <figure>
               <img src={classInfo.image} />
             </figure>
@@ -94,7 +93,15 @@ const ManageClasses = () => {
               <h2 className="card-title text-[18px]">
                 Class Name: {classInfo.className}
               </h2>
-              <p className="card-info">Status: {classInfo.status}</p>
+              <p className="card-info">
+                Status:{" "}
+                <span
+                  className={`${
+                    classInfo.status === "approved" && "text-success"
+                  } ${classInfo.status === "denied" && "text-error"}`}>
+                  {classInfo.status}
+                </span>
+              </p>
               <p className="card-info">Class Price: ${classInfo.price}</p>
               <p className="card-info">
                 Available Seats: {classInfo.availableSeats}
@@ -113,12 +120,12 @@ const ManageClasses = () => {
                     (classInfo.status === "approved") === true ||
                     (classInfo.status === "denied") === true
                   }
-                  className="btn">
+                  className="btn bg-green-200">
                   Approve
                 </button>
 
                 <button
-                  className="btn"
+                  className="btn bg-red-200"
                   onClick={() => handleDenyClass(classInfo)}
                   disabled={
                     (classInfo.status === "approved") === true ||

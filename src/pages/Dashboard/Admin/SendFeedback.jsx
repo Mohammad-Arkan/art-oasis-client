@@ -39,10 +39,11 @@ const SendFeedback = () => {
         <h2 className="font-semibold my-3">
           [ Write Feedback To {classInfo.className} ]
         </h2>
-        <form onSubmit={handleSendFeedback} className="md:w-2/3 w-10/12">
+        <form onSubmit={handleSendFeedback} className="md:w-2/3 w-10/12 mb-10">
           <textarea
             name="feedback"
             className="textarea textarea-accent w-full textarea-bordered font-semibold"
+            defaultValue={classInfo.feedback}
             placeholder="Write Feedback"></textarea>
           <input
             type="submit"

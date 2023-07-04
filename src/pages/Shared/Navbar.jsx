@@ -2,14 +2,16 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import {FaAlignLeft, FaArrowRight, FaHome, FaUsers} from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
+import useAdmin from "../../hooks/useAdmin";
+import useStudent from "../../hooks/useStudent";
+import useInstructor from "../../hooks/useInstructor";
+import logo from "../../assets/logo.png";
 
 const Navbar = () => {
   const {user, loading, logout} = useAuth();
-  const [toggleTheme, setToggleTheme] = useState(true);
-
-  const handleToggleTheme = () => {
-    setToggleTheme(!toggleTheme);
-  };
+  const [isAdmin] = useAdmin();
+  const [isStudent] = useStudent();
+  const [, isInstructor] = useInstructor();
 
   const handleLogOut = () => {
     logout();
@@ -32,11 +34,27 @@ const Navbar = () => {
           <FaUsers /> Instructors
         </Link>
       </li>
-      <li>
-        <Link to={"/dashboard"}>
-          <FaAlignLeft /> Dashboard
-        </Link>
-      </li>
+      {isStudent && (
+        <li>
+          <Link to={"/dashboard/selected-classes"}>
+            <FaAlignLeft /> Selected Classes
+          </Link>
+        </li>
+      )}
+      {isInstructor && (
+        <li>
+          <Link to={"/dashboard/instructor/my-classes"}>
+            <FaAlignLeft /> Manage Classes
+          </Link>
+        </li>
+      )}
+      {isAdmin && (
+        <li>
+          <Link to={"/dashboard/admin-panel"}>
+            <FaAlignLeft /> Dashboard
+          </Link>
+        </li>
+      )}
     </>
   );
   return (
@@ -66,16 +84,9 @@ const Navbar = () => {
             </ul>
           </div>
           <Link to={"/"} className="btn btn-ghost normal-case text-xl mr-2">
+            <img width={30} src={logo} alt="" />
             Art Oasis
           </Link>
-          <div className="hidden md:flex gap-3">
-            <input
-              onClick={handleToggleTheme}
-              type="checkbox"
-              className="toggle"
-            />
-            <span className="font-semibold">Light / Dark </span>
-          </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navItems}</ul>

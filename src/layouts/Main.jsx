@@ -1,13 +1,14 @@
-import React, {useContext} from "react";
+import React from "react";
 import {Outlet} from "react-router-dom";
 import Navbar from "../pages/Shared/Navbar";
-import {AuthContext} from "../providers/AuthProvider";
+import Footer from "../pages/Shared/Footer";
 
 const Main = () => {
   return (
     <div>
       <Navbar />
       <Outlet />
+      <Footer />
     </div>
   );
 };

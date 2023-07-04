@@ -80,7 +80,7 @@ const SelectedClasses = () => {
                   onClick={() => {
                     handleDeleteClass(classInfo);
                   }}
-                  className="btn btn-circle btn-outline text-xl">
+                  className="btn btn-circle btn-neutral text-xl">
                   &#10005;
                 </button>
               </div>

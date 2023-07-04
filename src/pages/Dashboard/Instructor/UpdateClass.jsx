@@ -45,7 +45,6 @@ const UpdateClass = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure.patch(`/class/${id}`, updateClass).then((res) => {
-          console.log(res.data);
           if (res.data.modifiedCount > 0) {
             reset();
             refetch();

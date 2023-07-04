@@ -1,21 +1,10 @@
 import React from "react";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useAuth from "../../../hooks/useAuth";
-import {useQuery} from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import {Helmet} from "react-helmet-async";
+import useUsers from "../../../hooks/useUsers";
 
 const ManageUsers = () => {
-  const [axiosSecure] = useAxiosSecure();
-  const {user, loading} = useAuth();
-  const {refetch, data: users = []} = useQuery({
-    queryKey: ["users"],
-    enabled: !loading && !!user?.email,
-    queryFn: async () => {
-      const res = await axiosSecure("/users");
-      return res.data;
-    },
-  });
+  const [users, refetch] = useUsers();
 
   const handleMakeAdmin = (user) => {
     Swal.fire({
@@ -27,7 +16,7 @@ const ManageUsers = () => {
       confirmButtonText: "Yes, Make This User Admin!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+        fetch(`https://art-oasis-server.vercel.app/users/admin/${user._id}`, {
           method: "PATCH",
         })
           .then((res) => res.json())
@@ -51,9 +40,12 @@ const ManageUsers = () => {
       confirmButtonText: "Yes, Make This User Instructor!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
-          method: "PATCH",
-        })
+        fetch(
+          `https://art-oasis-server.vercel.app/users/instructor/${user._id}`,
+          {
+            method: "PATCH",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.modifiedCount > 0) {

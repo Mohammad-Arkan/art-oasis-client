@@ -24,7 +24,7 @@ const Classes = () => {
         {classes.map((classInfo, idx) => (
           <div
             key={idx}
-            className="card card-compact w-11/12 mx-auto bg-base-100 shadow-xl">
+            className="card card-compact w-11/12 mx-auto bg-base-100 shadow-xl mt-5">
             <figure>
               <img src={classInfo.image} />
             </figure>

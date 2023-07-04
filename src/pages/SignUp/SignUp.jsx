@@ -37,7 +37,6 @@ const SignUp = () => {
     createUser(data.email, data.password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
         updateUserProfile(data.name, data.photoURL).then(() => {
           const saveUser = {
             name: data.name,
@@ -45,7 +44,7 @@ const SignUp = () => {
             image: data.photoURL,
             role: "student",
           };
-          fetch("http://localhost:5000/users", {
+          fetch("https://art-oasis-server.vercel.app/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -71,7 +70,6 @@ const SignUp = () => {
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
-    console.log(showPassword);
   };
 
   return (
@@ -131,11 +129,11 @@ const SignUp = () => {
                   placeholder="password"
                   className="input input-bordered"
                 />
-                <button
+                <span
                   onClick={handleTogglePassword}
                   className="absolute right-5 bottom-4 ">
                   {showPassword ? <FaEye /> : <FaEyeSlash />}
-                </button>
+                </span>
               </div>
               <div>
                 {errors.password?.type === "required" && (
