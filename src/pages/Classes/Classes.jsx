@@ -5,12 +5,30 @@ import useAdmin from "../../hooks/useAdmin";
 import useInstructor from "../../hooks/useInstructor";
 import useSelectClass from "../../hooks/useSelectClass";
 import {Helmet} from "react-helmet-async";
+import {useQuery} from "@tanstack/react-query";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Classes = () => {
+  const {user} = useAuth();
   const [classes] = useApprovedClasses();
   const [isAdmin] = useAdmin();
   const [, isInstructor] = useInstructor();
   const [handleSelectClass] = useSelectClass();
+  const [axiosSecure] = useAxiosSecure();
+
+  const {data: selectedClasses = [], refetch} = useQuery({
+    queryKey: ["selected", user?.email],
+    queryFn: async () => {
+      if (!user) return [];
+      const res = await axiosSecure.get(`/selected/classes/${user?.email}`);
+      const ids = [];
+      for (const classes of res.data) {
+        ids.push(classes.classId);
+      }
+      return ids;
+    },
+  });
 
   return (
     <div className="my-10">
@@ -39,9 +57,13 @@ const Classes = () => {
               <p className="card-info">Price: ${classInfo.price}</p>
               <div className="card-actions mt-2">
                 <button
-                  onClick={() => handleSelectClass(classInfo)}
+                  onClick={() => handleSelectClass(classInfo, refetch)}
                   className="btn btn-block btn-neutral text-[16px]"
-                  disabled={isAdmin || isInstructor}>
+                  disabled={
+                    selectedClasses.includes(classInfo._id) ||
+                    isAdmin ||
+                    isInstructor
+                  }>
                   <FaBookmark /> Select
                 </button>
               </div>

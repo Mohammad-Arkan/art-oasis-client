@@ -6,7 +6,7 @@ import moment from "moment/moment";
 const PaymentHistory = () => {
   const [payments] = useEnrolledClasses();
   return (
-    <div className="w-full">
+    <div className="w-full min-h-screen">
       <Helmet>
         <title>Art Oasis | Payment History</title>
       </Helmet>

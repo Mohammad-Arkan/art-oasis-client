@@ -9,7 +9,7 @@ const useSelectClass = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleSelectClass = (classInfo) => {
+  const handleSelectClass = (classInfo, refetch) => {
     if (user) {
       const {image, className, _id, price, instructorName, instructorEmail} =
         classInfo;
@@ -26,6 +26,7 @@ const useSelectClass = () => {
       axiosSecure.post("/selected/class", selectedClass).then((data) => {
         if (data.data.insertedId) {
           Swal.fire("Good job!", "Class Selected Successfully!", "success");
+          refetch();
         }
       });
     } else {

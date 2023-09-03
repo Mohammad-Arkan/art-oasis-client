@@ -44,7 +44,7 @@ const SignUp = () => {
             image: data.photoURL,
             role: "student",
           };
-          fetch("https://art-oasis-server.vercel.app/users", {
+          fetch("https://art-oasis-server.onrender.com/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -78,7 +78,7 @@ const SignUp = () => {
         <title>Art Oasis | Sign Up</title>
       </Helmet>
       <div>
-        <div className="w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-[10vh]">
+        <div className="w-11/12 lg:w-2/3 mx-auto my-[10vh]">
           <div className="card shadow-2xl">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <h1 className="text-xl font-bold text-center">Sign Up!</h1>
@@ -189,7 +189,7 @@ const SignUp = () => {
               </div>
               <div className="form-control mt-6">
                 <input
-                  className="btn btn-primary"
+                  className="btn btn-neutral"
                   type="submit"
                   value={"Sign Up"}
                 />

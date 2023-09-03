@@ -6,7 +6,6 @@ import img1 from "../../../assets/course6.jpg";
 import img2 from "../../../assets/course2.jpg";
 import img3 from "../../../assets/course3.jpg";
 import img4 from "../../../assets/course4.jpg";
-import img5 from "../../../assets/course5.jpg";
 
 const Banner = () => {
   return (

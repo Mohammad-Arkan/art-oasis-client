@@ -40,7 +40,7 @@ const Login = () => {
       <Helmet>
         <title>Art Oasis | Login</title>
       </Helmet>
-      <div className="w-11/12 md:w-1/2 lg:w-1/3 mx-auto my-[10vh]">
+      <div className="w-11/12 md:w-3/5 mx-auto my-[10vh]">
         <div className="card shadow-2xl">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <h1 className="text-xl font-bold text-center">Login!</h1>

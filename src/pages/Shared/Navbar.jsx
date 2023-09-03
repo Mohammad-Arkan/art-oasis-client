@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {FaAlignLeft, FaArrowRight, FaHome, FaUsers} from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
@@ -12,6 +12,23 @@ const Navbar = () => {
   const [isAdmin] = useAdmin();
   const [isStudent] = useStudent();
   const [, isInstructor] = useInstructor();
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme")
+      ? localStorage.getItem("theme")
+      : window.matchMedia("(prefers-color-scheme: light)").matches
+      ? "light"
+      : "dark"
+  );
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
+
+  const handleThemeToggle = (e) => {
+    e.target.checked ? setTheme("dark") : setTheme("light");
+  };
 
   const handleLogOut = () => {
     logout();
@@ -87,6 +104,12 @@ const Navbar = () => {
             <img width={30} src={logo} alt="" />
             Art Oasis
           </Link>
+          <input
+            type="checkbox"
+            onChange={handleThemeToggle}
+            checked={theme === "light" ? false : true}
+            className="toggle"
+          />
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navItems}</ul>

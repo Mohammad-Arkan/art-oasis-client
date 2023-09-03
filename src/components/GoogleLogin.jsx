@@ -19,7 +19,7 @@ const GoogleLogin = () => {
           image: user.photoURL,
           role: "student",
         };
-        fetch("https://art-oasis-server.vercel.app/users", {
+        fetch("https://art-oasis-server.onrender.com/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -43,7 +43,7 @@ const GoogleLogin = () => {
     <div>
       <div className="divider m-0 pb-4"></div>
       <div className="text-center mb-4">
-        <button onClick={handleGoogleSignIn} className="btn btn-neutral">
+        <button type="button" onClick={handleGoogleSignIn} className="btn">
           <FaGoogle /> Sign In with Google
         </button>
       </div>

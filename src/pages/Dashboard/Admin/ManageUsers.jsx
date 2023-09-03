@@ -16,12 +16,13 @@ const ManageUsers = () => {
       confirmButtonText: "Yes, Make This User Admin!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://art-oasis-server.vercel.app/users/admin/${user._id}`, {
+        fetch(`https://art-oasis-server.onrender.com/users/admin/${user._id}`, {
           method: "PATCH",
         })
           .then((res) => res.json())
           .then((data) => {
             if (data.modifiedCount > 0) {
+              console.log(data);
               refetch();
               Swal.fire("Good job!", `${user.name} is an Admin Now`, "success");
             }
@@ -41,7 +42,7 @@ const ManageUsers = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `https://art-oasis-server.vercel.app/users/instructor/${user._id}`,
+          `https://art-oasis-server.onrender.com/users/instructor/${user._id}`,
           {
             method: "PATCH",
           }

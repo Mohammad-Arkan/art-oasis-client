@@ -4,7 +4,7 @@ import {Fade} from "react-awesome-reveal";
 const Footer = () => {
   return (
     <Fade>
-      <footer className="footer p-10 bg-base-200 text-base-content rounded-lg">
+      <footer className="footer p-10 bg-base-300 text-base-content">
         <div>
           <div className="flex items-center gap-2">
             <img width={30} src="/logo.png" alt="" />

@@ -6,7 +6,7 @@ const EnrolledClasses = () => {
   const [enrolledClasses] = useEnrolledClasses();
 
   return (
-    <div>
+    <div className="min-h-screen">
       <Helmet>
         <title>Art Oasis | Enrolled Classes</title>
       </Helmet>
@@ -15,7 +15,7 @@ const EnrolledClasses = () => {
           Enrolled Classes
         </span>
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 my-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 my-20">
         {enrolledClasses.map((classInfo, idx) => (
           <div
             key={idx}

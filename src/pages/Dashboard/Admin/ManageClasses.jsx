@@ -20,7 +20,7 @@ const ManageClasses = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `https://art-oasis-server.vercel.app/approve/classes/${classInfo._id}`,
+          `https://art-oasis-server.onrender.com/approve/classes/${classInfo._id}`,
           {
             method: "PATCH",
           }
@@ -51,7 +51,7 @@ const ManageClasses = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `https://art-oasis-server.vercel.app/deny/classes/${classInfo._id}`,
+          `https://art-oasis-server.onrender.com/deny/classes/${classInfo._id}`,
           {
             method: "PATCH",
           }
@@ -81,7 +81,7 @@ const ManageClasses = () => {
           Manage Classes
         </span>
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-14">
+      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-3 my-14">
         {classes.map((classInfo, idx) => (
           <div
             key={idx}

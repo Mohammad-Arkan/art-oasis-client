@@ -19,7 +19,7 @@ const useInstructor = () => {
     queryKey: ["instructors"],
     queryFn: async () => {
       const res = await fetch(
-        "https://art-oasis-server.vercel.app/instructors"
+        "https://art-oasis-server.onrender.com/instructors"
       );
       return res.json();
     },

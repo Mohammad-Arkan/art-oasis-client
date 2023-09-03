@@ -21,7 +21,7 @@ const Payment = () => {
     },
   });
   return (
-    <div className="w-full px-5">
+    <div className="w-full px-5 min-h-screen">
       <Helmet>
         <title>Art Oasis | Payment</title>
       </Helmet>

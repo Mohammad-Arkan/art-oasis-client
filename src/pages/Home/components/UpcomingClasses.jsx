@@ -7,13 +7,7 @@ import img3 from "../../../assets/im3.jpg";
 const UpcomingClasses = () => {
   return (
     <>
-      <h2 className="text-3xl font-semibold text-center mt-24 mb-20">
-        <span className="border-b-4 rounded-full px-10 py-2">
-          Upcoming Classes
-        </span>
-      </h2>
-
-      <Marquee>
+      <Marquee className="mt-24">
         <div className="flex gap-10 bg-base-100 mx-5 mb-20">
           <img width={500} className="rounded-lg shadow-xl" src={img1} />
           <img width={500} className="rounded-lg shadow-xl" src={img2} />

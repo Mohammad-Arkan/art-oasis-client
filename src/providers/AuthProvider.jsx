@@ -60,7 +60,7 @@ const AuthProvider = ({children}) => {
       setUser(currentUser);
       if (currentUser) {
         axios
-          .post("https://art-oasis-server.vercel.app/jwt", {
+          .post("https://art-oasis-server.onrender.com/jwt", {
             email: currentUser.email,
           })
           .then((data) => {

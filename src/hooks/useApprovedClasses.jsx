@@ -1,11 +1,11 @@
 import {useQuery} from "@tanstack/react-query";
-import {Navigate} from "react-router-dom";
+
 const useApprovedClasses = () => {
   const {data: classes = []} = useQuery({
     queryKey: ["approvedClasses"],
     queryFn: async () => {
       const res = await fetch(
-        "https://art-oasis-server.vercel.app/approvedClasses"
+        "https://art-oasis-server.onrender.com/approvedClasses"
       );
       return res.json();
     },

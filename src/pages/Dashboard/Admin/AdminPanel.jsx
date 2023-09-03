@@ -14,12 +14,12 @@ const AdminPanel = () => {
   payments.map((payment) => (revenue = revenue + payment.price));
 
   return (
-    <div className="w-full px-10">
+    <div className="w-full min-h-screen px-10">
       <Helmet>
         <title>Art Oasis | Admin Panel</title>
       </Helmet>
-      <h2 className="text-2xl font-semibold mt-20 lg:pl-10 lg:text-start text-center">
-        🍁 Executive Dashbaord
+      <h2 className="text-2xl font-semibold mt-20 lg:pl-10 text-center ">
+        🐱‍🏍 Executive Dashbaord
       </h2>
       <div className="flex flex-wrap w-[88%] font-semibold gap-5 rounded mx-auto my-10 justify-center">
         <div className="border px-8 py-5 rounded-lg shadow-lg">

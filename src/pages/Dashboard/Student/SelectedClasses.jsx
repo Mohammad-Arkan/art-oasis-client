@@ -8,10 +8,11 @@ import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet-async";
 
 const SelectedClasses = () => {
-  const {user} = useAuth();
+  const {user, loading} = useAuth();
   const [axiosSecure] = useAxiosSecure();
   const {data: selectedClasses = [], refetch} = useQuery({
-    queryKey: ["selected", user?.email],
+    enabled: !loading && !!user?.email,
+    queryKey: ["selectedClasses", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/selected/classes/${user?.email}`);
       return res.data;
@@ -43,16 +44,17 @@ const SelectedClasses = () => {
   };
 
   return (
-    <div className="my-20">
+    <div className="min-h-screen">
       <Helmet>
         <title>Art Oasis | Selected Classes</title>
       </Helmet>
-      <h2 className="text-3xl font-semibold text-center">
-        <span className="border-b-4 rounded-full px-10 py-2">
+      <h2 className="text-3xl font-semibold text-center mt-24 mb-20">
+        <span className="border-b-4 rounded-full px-10 py-2 mt-20">
           Selected Classes
         </span>
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-20">
+
+      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-3 my-20">
         {selectedClasses.map((classInfo, idx) => (
           <div
             key={idx}
