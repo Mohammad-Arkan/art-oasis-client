@@ -13,20 +13,21 @@ const Banner = () => {
       <Carousel>
         <div>
           <img
+            className="rounded"
             src={"https://i.ibb.co/L9dk1bS/spark-for-anime-art-promo-1.webp"}
           />
         </div>
         <div>
-          <img src={img1} />
+          <img className="rounded" src={img1} />
         </div>
         <div>
-          <img src={img2} />
+          <img className="rounded" src={img2} />
         </div>
         <div>
-          <img src={img3} />
+          <img className="rounded" src={img3} />
         </div>
         <div>
-          <img src={img4} />
+          <img className="rounded" src={img4} />
         </div>
       </Carousel>
     </div>

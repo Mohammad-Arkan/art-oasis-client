@@ -7,6 +7,8 @@ import {Helmet} from "react-helmet-async";
 import UpcomingClasses from "./components/UpcomingClasses";
 import BecomeInstructor from "./components/BecomeInstructor";
 import Testimonials from "./components/Testimonials";
+import Qna from "./components/Qna";
+import Newsletter from "./components/Newsletter";
 
 const Home = () => {
   return (
@@ -20,6 +22,8 @@ const Home = () => {
         <Instructors />
         <BecomeInstructor />
         <Testimonials />
+        <Newsletter />
+        <Qna />
         <UpcomingClasses />
       </Fade>
     </div>

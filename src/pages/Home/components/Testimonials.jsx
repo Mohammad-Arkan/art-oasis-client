@@ -10,9 +10,9 @@ import {BiSolidQuoteRight} from "react-icons/bi";
 const Testimonials = () => {
   return (
     <>
-      <div className="my-28">
-        <h1 className="text-4xl font-semibold text-center my-10">
-          What Our Student Says
+      <div className="mt-24 mb-16">
+        <h1 className="text-3xl lg:text-4xl font-semibold text-center my-10">
+          What our student says
         </h1>
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
           <SwiperSlide>

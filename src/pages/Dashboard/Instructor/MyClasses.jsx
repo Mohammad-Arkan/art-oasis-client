@@ -19,11 +19,11 @@ const MyClasses = () => {
   });
 
   return (
-    <div className="my-20">
+    <div className="min-h-screen">
       <Helmet>
         <title>Art Oasis | My Classes</title>
       </Helmet>
-      <h2 className="text-3xl font-semibold text-center">
+      <h2 className="text-3xl font-semibold text-center my-20">
         <span className="border-b-4 rounded-full px-10 py-2">My Classes</span>
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-14">

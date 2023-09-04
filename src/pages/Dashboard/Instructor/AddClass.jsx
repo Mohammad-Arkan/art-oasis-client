@@ -65,7 +65,7 @@ const AddClass = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-11/12 lg:w-3/4 min-h-screen">
       <Helmet>
         <title>Art Oasis | Add Class</title>
       </Helmet>

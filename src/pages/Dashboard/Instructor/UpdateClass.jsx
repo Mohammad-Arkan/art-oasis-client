@@ -56,7 +56,7 @@ const UpdateClass = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full my-20">
       <Helmet>
         <title>Art Oasis | Update Class</title>
       </Helmet>
