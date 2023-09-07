@@ -60,7 +60,7 @@ const AuthProvider = ({children}) => {
       setUser(currentUser);
       if (currentUser) {
         axios
-          .post("https://art-oasis-server.onrender.com/jwt", {
+          .post("http://ec2-54-224-233-65.compute-1.amazonaws.com:5000/jwt", {
             email: currentUser.email,
           })
           .then((data) => {

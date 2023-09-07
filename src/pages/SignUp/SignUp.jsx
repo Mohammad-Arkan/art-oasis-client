@@ -44,7 +44,7 @@ const SignUp = () => {
             image: data.photoURL,
             role: "student",
           };
-          fetch("https://art-oasis-server.onrender.com/users", {
+          fetch("http://ec2-54-224-233-65.compute-1.amazonaws.com:5000/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",

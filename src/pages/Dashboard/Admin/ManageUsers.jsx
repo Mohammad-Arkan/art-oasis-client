@@ -16,9 +16,12 @@ const ManageUsers = () => {
       confirmButtonText: "Yes, Make This User Admin!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://art-oasis-server.onrender.com/users/admin/${user._id}`, {
-          method: "PATCH",
-        })
+        fetch(
+          `http://ec2-54-224-233-65.compute-1.amazonaws.com:5000/users/admin/${user._id}`,
+          {
+            method: "PATCH",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.modifiedCount > 0) {
@@ -42,7 +45,7 @@ const ManageUsers = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `https://art-oasis-server.onrender.com/users/instructor/${user._id}`,
+          `http://ec2-54-224-233-65.compute-1.amazonaws.com:5000/users/instructor/${user._id}`,
           {
             method: "PATCH",
           }

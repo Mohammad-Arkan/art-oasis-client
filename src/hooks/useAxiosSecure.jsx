@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 
 const axiosSecure = axios.create({
-  baseURL: "https://art-oasis-server.onrender.com",
+  baseURL: "http://ec2-54-224-233-65.compute-1.amazonaws.com:5000",
 });
 
 const useAxiosSecure = () => {

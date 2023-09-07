@@ -19,7 +19,7 @@ const useInstructor = () => {
     queryKey: ["instructors"],
     queryFn: async () => {
       const res = await fetch(
-        "https://art-oasis-server.onrender.com/instructors"
+        "http://ec2-54-224-233-65.compute-1.amazonaws.com:5000/instructors"
       );
       return res.json();
     },

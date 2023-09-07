@@ -51,6 +51,7 @@ const Navbar = () => {
           <FaUsers /> Instructors
         </Link>
       </li>
+
       {isStudent && (
         <li>
           <Link to={"/dashboard/selected-classes"}>
@@ -108,7 +109,7 @@ const Navbar = () => {
             type="checkbox"
             onChange={handleThemeToggle}
             checked={theme === "light" ? false : true}
-            className="toggle"
+            className="toggle hidden md:flex"
           />
         </div>
         <div className="navbar-center hidden lg:flex">

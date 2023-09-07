@@ -20,7 +20,7 @@ const ManageClasses = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `https://art-oasis-server.onrender.com/approve/classes/${classInfo._id}`,
+          `http://ec2-54-224-233-65.compute-1.amazonaws.com:5000/approve/classes/${classInfo._id}`,
           {
             method: "PATCH",
           }
@@ -51,7 +51,7 @@ const ManageClasses = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `https://art-oasis-server.onrender.com/deny/classes/${classInfo._id}`,
+          `http://ec2-54-224-233-65.compute-1.amazonaws.com:5000/deny/classes/${classInfo._id}`,
           {
             method: "PATCH",
           }
